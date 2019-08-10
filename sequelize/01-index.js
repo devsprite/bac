@@ -59,3 +59,32 @@ User.findAll().then(users => {
     console.log("All users:", JSON.stringify(users, null, 4));
 });
 
+
+
+// **************************************************************
+// Update user
+// **************************************************************
+User.update({
+    firstName: 'Dominique'
+}, {
+        where: {
+            id: 8
+        }
+    }).then(() => {
+        User.findAll().then(users => {
+            console.log("Users updated:", JSON.stringify(users, null, 4));
+        });
+    })
+
+// **************************************************************
+// Destroy User
+// **************************************************************
+
+User.destroy({
+    where: {
+        firstName: 'Dominique'
+    }
+}).then(() => {
+    console.log("Users deleted: ");
+
+})
