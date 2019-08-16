@@ -1,56 +1,29 @@
-import React, { Component } from 'react'
-import { render } from 'react-dom'
-
-const randomColor = () => {
-    const color = '#' + Math.random().toString(16).substr(-6);
-    console.log('color:', color);
-    return  color;
-}
-
-class Card extends Component {
-  render() {
-    const style = {
-      padding: 20,
-      textAlign: 'center',
-      color: 'white',
-      backgroundColor: this.props.color,
-    }
-
-    return (
-      <div style={style}>
-        {this.props.children}
-      </div>
-    )
-  }
-}
+import React, { Component } from 'react';
+import { render } from 'react-dom';
 
 class App extends Component {
 
   state = {
-    color: 'skyblue'
+    counter: 0
   }
 
-  randomizeColor = () => this.setState({color: randomColor()})
+  increment = () => this.setState({ counter: this.state.counter + 1 })
 
   render() {
-    const {color} = this.state
-
-    const style = {
-      padding: 20,
-    }
+    const { counter } = this.state;
 
     return (
-      <div style={style}>
-        <Card color={color}>
-          <input
-            type={'button'}
-            value={'Randomize Color: ' + color}
-            onClick={this.randomizeColor}
-          />
-        </Card>
-      </div>
-    )
+
+      <input
+        type={'button'}
+        value={'Mon compteur ' + counter}
+        onClick={this.increment}
+      />
+
+    );
   }
+
 }
 
-render(<App />, document.querySelector('#root'))
+
+render(<App />, document.getElementById('root'));
